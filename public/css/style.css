@@ -1,0 +1,436 @@
+:root {
+  --bg: #0d1f17;
+  --bg2: #16291f;
+  --bg3: #1d3328;
+  --felt: #143d28;
+  --ink: #e8efe9;
+  --muted: #7d9286;
+  --rule: #2a4035;
+  --accent: #d4a843;
+  --accent2: #c4554d;
+  --accent3: #4a9d7e;
+  --red: #e74c3c;
+  --black: #2c3e50;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: flex; }
+
+/* === Lobby === */
+#lobby { align-items: center; justify-content: center; padding: 2rem 1rem; }
+
+.lobby-card {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.suit-row {
+  font-size: 1.8rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.suit-row { color: var(--ink); }
+.suit-row span:nth-child(2), .suit-row span:nth-child(3) { color: var(--red); }
+
+.lobby-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.lobby-actions { margin-top: 0.5rem; }
+
+.divider {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 1rem 0;
+}
+
+.join-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.join-row input { flex: 1; }
+
+.lobby-message {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--accent2);
+  min-height: 1.2rem;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.05s;
+  color: #fff;
+}
+
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-secondary { background: var(--bg3); border: 1px solid var(--rule); }
+.btn-danger { background: var(--accent2); }
+.btn-warning { background: #e67e22; }
+.btn-small { padding: 0.3rem 0.7rem; font-size: 0.8rem; }
+
+/* === Waiting Room === */
+#waitingRoom { align-items: center; justify-content: center; padding: 2rem 1rem; }
+
+.waiting-card {
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.room-code-display {
+  color: var(--accent);
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+}
+
+.waiting-hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.player-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.player-list-item .host-tag {
+  color: var(--accent);
+  font-size: 0.75rem;
+  margin-left: auto;
+}
+
+/* === Game === */
+#game {
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.room-info { font-size: 0.85rem; color: var(--muted); }
+.room-info strong { color: var(--accent); }
+.phase-info {
+  font-size: 0.8rem;
+  color: var(--accent3);
+  margin-left: auto;
+  margin-right: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.game-header .btn { margin-left: auto; }
+
+.poker-table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  min-height: 60vh;
+}
+
+.opponents-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.table-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pot-display {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.community-cards {
+  display: flex;
+  gap: 0.4rem;
+  min-height: 80px;
+}
+
+.game-message {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 1.2rem;
+}
+
+.my-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.my-cards {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.my-info {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.my-info strong { color: var(--ink); }
+
+.bet-info {
+  color: var(--accent);
+  margin-left: 0.5rem;
+}
+
+/* === Cards === */
+.card {
+  width: 50px;
+  height: 70px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  background: #fff;
+  color: #2c3e50;
+  border: 1px solid #ddd;
+}
+
+.card.red { color: var(--red); }
+.card.black { color: var(--black); }
+.card-back {
+  background: repeating-linear-gradient(45deg, #1a5c3a, #1a5c3a 4px, #143d28 4px, #143d28 8px);
+  border: 2px solid var(--accent);
+}
+.card-back::after {
+  content: '♠';
+  font-size: 1.5rem;
+  color: var(--accent);
+  opacity: 0.5;
+}
+.card.placeholder {
+  background: transparent;
+  border: 2px dashed var(--rule);
+}
+
+.card-rank { font-size: 1.1rem; line-height: 1; }
+.card-suit { font-size: 1.1rem; line-height: 1; }
+
+/* === Opponent Seats === */
+.seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  min-width: 100px;
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  transition: border-color 0.2s;
+}
+
+.seat.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(212, 168, 67, 0.3);
+}
+
+.seat.folded {
+  opacity: 0.4;
+}
+
+.seat-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.seat-chips {
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.seat-bet {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.seat-cards {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.seat-cards .card {
+  width: 30px;
+  height: 42px;
+  font-size: 0.7rem;
+}
+
+.seat-cards .card-back::after { font-size: 0.9rem; }
+
+.dealer-tag {
+  font-size: 0.65rem;
+  color: var(--accent);
+  background: var(--bg3);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.folded-tag {
+  font-size: 0.65rem;
+  color: var(--accent2);
+}
+
+.allin-tag {
+  font-size: 0.65rem;
+  color: #e67e22;
+}
+
+.winner-tag {
+  font-size: 0.7rem;
+  color: var(--accent3);
+  font-weight: 700;
+}
+
+/* === Action Panel === */
+.action-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+.action-panel:empty,
+.action-panel.hidden { display: none; }
+
+.raise-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.raise-controls input[type="range"] {
+  width: 120px;
+  accent-color: var(--accent);
+}
+
+.raise-amount {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.next-hand-panel {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--rule);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .lobby-card, .waiting-card { padding: 1.5rem; }
+  .card { width: 40px; height: 56px; }
+  .seat { min-width: 80px; }
+  .opponents-area { gap: 0.5rem; }
+  .raise-controls input[type="range"] { width: 80px; }
+}
