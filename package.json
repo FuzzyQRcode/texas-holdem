@@ -1,0 +1,18 @@
+{
+  "name": "texas-holdem",
+  "version": "1.0.0",
+  "description": "在线联机德州扑克 — 零成本学生项目",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test/handEvaluator.test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "localtunnel": "^2.0.2"
+  }
+}
