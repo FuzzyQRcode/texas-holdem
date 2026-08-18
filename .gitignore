@@ -1,0 +1,10 @@
+node_modules/
+cloudflared.exe
+cf.exe
+tunnel-url.txt
+tunnel-url - Copy.txt
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.env
